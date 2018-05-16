@@ -1,0 +1,27 @@
+{
+  "name": "aws-ec2-examples",
+  "version": "1.0.0",
+  "description": "Project with some examples of how to launch a EC2 instance using the AWS Javascript SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderade/aws-ec2-examples.git"
+  },
+  "keywords": [
+    "nodejs",
+    "ec2",
+    "aws"
+  ],
+  "author": "Valdeci Gomes <valdeci@outlook.my>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coderade/aws-ec2-examples/issues"
+  },
+  "homepage": "https://github.com/coderade/aws-ec2-examples#readme",
+  "dependencies": {
+    "aws-sdk": "^2.240.1"
+  }
+}
