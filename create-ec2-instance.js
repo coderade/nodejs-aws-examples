@@ -9,7 +9,9 @@ const ec2 = new AWS.EC2();
 const sgName = 'ec2_sg';
 const keyName = 'ec2_key';
 
-createSecurityGroup(sgName);
+createSecurityGroup(sgName).then(() => {
+    return createKeyPair(keyName);
+});
 
 // Create functions
 
@@ -62,7 +64,16 @@ function createSecurityGroup(sgName) {
 }
 
 function createKeyPair(keyName) {
-    // TODO: Create keypair
+    const params = {KeyName: keyName};
+
+    return new Promise((resolve, reject) => {
+        ec2.createKeyPair(params, (err, data) => {
+            if (err)
+                reject(err);
+            else
+                resolve(data)
+        })
+    })
 }
 
 function createInstance(sgName, keyName) {
