@@ -2,6 +2,10 @@
 const AWS = require('aws-sdk');
 const keyPairHelper = require('./helpers/keyPairHelper');
 
+let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
+AWS.config.credentials = credentials;
+
+
 AWS.config.update({region: 'us-east-1'});
 
 const ec2 = new AWS.EC2();
@@ -10,9 +14,12 @@ const ec2 = new AWS.EC2();
 const sgName = 'ec2_sg';
 const keyName = 'ec2_key';
 
-createSecurityGroup(sgName).then(() => {
-    return createKeyPair(keyName);
-}).then(keyPairHelper.persistKeyPair).then(() => {
+createSecurityGroup(sgName)
+    .then(() => {
+        return createKeyPair(keyName);
+    })
+    .then(keyPairHelper.persistKeyPair)
+    .then(() => {
         return createInstance(sgName, keyName)
     })
     .then((data) => {
@@ -23,7 +30,7 @@ createSecurityGroup(sgName).then(() => {
     })
 ;
 
-// Create function  s
+// Create function
 
 function createSecurityGroup(sgName) {
     const params = {
