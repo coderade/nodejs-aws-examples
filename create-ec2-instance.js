@@ -1,5 +1,6 @@
 // Imports
 const AWS = require('aws-sdk');
+const keyPairHelper = require('./helpers/keyPairHelper');
 
 AWS.config.update({region: 'us-east-1'});
 
@@ -11,9 +12,18 @@ const keyName = 'ec2_key';
 
 createSecurityGroup(sgName).then(() => {
     return createKeyPair(keyName);
-});
+}).then(keyPairHelper.persistKeyPair).then(() => {
+        return createInstance(sgName, keyName)
+    })
+    .then((data) => {
+        console.log('Created instance with:', data)
+    })
+    .catch((err) => {
+        console.error('Failed to create instance with:', err)
+    })
+;
 
-// Create functions
+// Create function  s
 
 function createSecurityGroup(sgName) {
     const params = {
@@ -77,5 +87,24 @@ function createKeyPair(keyName) {
 }
 
 function createInstance(sgName, keyName) {
-    // TODO: create ec2 instance
+    const params = {
+        ImageId: 'ami-14c5486b', //AMI ID that will be used to create the instance
+        InstanceType: 't2.micro',
+        KeyName: keyName,
+        MaxCount: 1,
+        MinCount: 1,
+        SecurityGroups: [
+            sgName
+        ],
+        UserData: 'IyEvYmluL2Jhc2gNCmN1cmwgLS1zaWxlbnQgLS1sb2NhdGlvbiBodHRwczovL3JwbS5ub2Rlc291cmNlLmNvbS9zZXR1cF8xMC54IHwgc3VkbyBiYXNoIC0NCnN1ZG8geXVtIGluc3RhbGwgLXkgbm9kZWpzDQpzdWRvIHl1bSBpbnN0YWxsIC15IGdpdA0KZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9jb2RlcmFkZS9hd3MtZWMyLWV4YW1wbGVzDQpjZCBoYmZsDQpucG0gaQ0KbnBtIHJ1biBzdGFydA=='
+    };
+
+    return new Promise((resolve, reject) => {
+        ec2.runInstances(params, (err, data) => {
+            if (err)
+                reject(err);
+            else
+                resolve(data)
+        })
+    })
 }
