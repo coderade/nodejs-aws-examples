@@ -12,9 +12,10 @@ const ec2 = new AWS.EC2();
 
 //Security Group name
 const sgName = 'ec2_examples_sg';
-const keyName = 'ec2_example_instance';
+const sgDescription = 'ec2_examples Security Group description';
+const keyName = 'ec2_examples_instance';
 
-createSecurityGroup(sgName)
+createSecurityGroup(sgName, sgDescription)
     .then(() => {
         return createKeyPair(keyName);
     })
@@ -29,12 +30,10 @@ createSecurityGroup(sgName)
         console.error('Failed to create instance with:', err)
     });
 
-// Create function
-
-function createSecurityGroup(sgName) {
+function createSecurityGroup(sgName, sgDescription) {
     const params = {
         Description: sgName,
-        GroupName: sgName,
+        GroupName: sgDescription,
     };
 
     return new Promise((resolve, reject) => {
