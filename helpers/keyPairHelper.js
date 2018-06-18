@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-function keyPairHelper (keyData) {
+function persistKeyPair(keyData) {
     return new Promise((resolve, reject) => {
         const keyPath = path.join(os.homedir(), '.ssh', keyData.KeyName);
         const options = {
@@ -21,5 +21,5 @@ function keyPairHelper (keyData) {
 }
 
 module.exports = {
-    persistKeyPair: keyPairHelper
+    persistKeyPair: persistKeyPair
 };
