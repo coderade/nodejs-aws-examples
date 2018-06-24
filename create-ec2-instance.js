@@ -11,9 +11,9 @@ AWS.config.update({region: 'us-east-1'});
 const ec2 = new AWS.EC2();
 
 //Security Group name
-const sgName = 'ec2_examples_sg';
+const sgName = 'ec2_examples_security_group';
 const sgDescription = 'ec2_examples Security Group description';
-const keyName = 'ec2_examples_instance';
+const keyName = 'ec2_examples_instance_key';
 
 createSecurityGroup(sgName, sgDescription)
     .then(() => {
@@ -32,8 +32,8 @@ createSecurityGroup(sgName, sgDescription)
 
 function createSecurityGroup(sgName, sgDescription) {
     const params = {
-        Description: sgName,
-        GroupName: sgDescription,
+        GroupName: sgName,
+        Description: sgDescription
     };
 
     return new Promise((resolve, reject) => {
@@ -107,7 +107,6 @@ function createInstance(sgName, keyName) {
         ImageId: 'ami-14c5486b', //AMI ID that will be used to create the instance
         InstanceType: 't2.micro',
         KeyName: keyName,
-        Name: keyName,
         MaxCount: 1,
         MinCount: 1,
         SecurityGroups: [
