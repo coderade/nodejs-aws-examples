@@ -91,6 +91,18 @@ function createKeyPair(keyName) {
 }
 
 function createInstance(sgName, keyName) {
+
+    //commands to run once the instance starts and to be use on the instance UserData
+    let commandsString = `#!/bin/bash
+    curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+    sudo yum install -y nodejs
+    sudo yum install -y git
+    git clone https://github.com/user/repo
+    cd repo
+    npm i
+    npm run start`;
+
+
     const params = {
         ImageId: 'ami-14c5486b', //AMI ID that will be used to create the instance
         InstanceType: 't2.micro',
@@ -101,8 +113,7 @@ function createInstance(sgName, keyName) {
         SecurityGroups: [
             sgName
         ],
-        //The UserData base64 encoded from ec2-startup.sh file.
-        UserData: 'IyEvYmluL2Jhc2gNCmN1cmwgLS1zaWxlbnQgLS1sb2NhdGlvbiBodHRwczovL3JwbS5ub2Rlc291cmNlLmNvbS9zZXR1cF8xMC54IHwgc3VkbyBiYXNoIC0NCnN1ZG8geXVtIGluc3RhbGwgLXkgbm9kZWpzDQpzdWRvIHl1bSBpbnN0YWxsIC15IGdpdA0KZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9jb2RlcmFkZS9hd3MtZWMyLWV4YW1wbGVzDQpjZCBoYmZsDQpucG0gaQ0KbnBtIHJ1biBzdGFydA=='
+        UserData: new Buffer(commandsString).toString('base64')
     };
 
     return new Promise((resolve, reject) => {
