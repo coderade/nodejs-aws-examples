@@ -10,10 +10,10 @@ AWS.config.update({region: 'us-east-1'});
 
 const ec2 = new AWS.EC2();
 
-//Security Group name
 const sgName = 'ec2_examples_security_group';
 const sgDescription = 'ec2_examples Security Group description';
 const keyName = 'ec2_examples_instance_key';
+const instanceTagName = 'EC2 Examples';
 
 createSecurityGroup(sgName, sgDescription)
     .then(() => {
@@ -21,11 +21,9 @@ createSecurityGroup(sgName, sgDescription)
     })
     .then(keyPairHelper.persistKeyPair)
     .then(() => {
-        return createInstance(sgName, keyName)
+        return createInstance(sgName, keyName, instanceTagName)
     })
-    .then((data) => {
-        console.log('Created instance with:', data)
-    })
+    .then(createInstanceTag)
     .catch((err) => {
         console.error('Failed to create instance with:', err)
     });
@@ -117,6 +115,29 @@ function createInstance(sgName, keyName) {
 
     return new Promise((resolve, reject) => {
         ec2.runInstances(params, (err, data) => {
+            if (err)
+                reject(err);
+            else
+                console.log('Created instance with:', data);
+                resolve(data)
+        })
+    })
+}
+
+
+function createInstanceTag(instanceData, instanceTagName) {
+    const params = {
+        Resources: [instanceData.Instances[0].InstanceId],
+        Tags: [
+            {
+                Key: 'Name',
+                Value: instanceTagName
+            }
+        ]
+    };
+
+    return new Promise((resolve, reject) => {
+        ec2.createTags(params, (err, data) => {
             if (err)
                 reject(err);
             else
