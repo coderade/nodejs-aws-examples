@@ -95,7 +95,7 @@ function createInstance(sgName, keyName) {
     curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
     sudo yum install -y nodejs
     sudo yum install -y git
-    git clone https://github.com/user/repo
+    git clone https://github.com/coderade/aws-ec2-examples
     cd repo
     npm i
     npm run start`;
