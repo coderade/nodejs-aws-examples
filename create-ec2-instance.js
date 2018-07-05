@@ -12,20 +12,14 @@ const sgDescription = 'ec2_examples Security Group description';
 const keyName = 'ec2_examples_instance_key';
 const instanceTagName = 'EC2 Examples';
 
-createSecurityGroup(sgName, sgDescription)
-    .then(() => {
-        return createKeyPair(keyName);
-    })
-    .then(keyPairHelper.persistKeyPair)
-    .then(() => {
-        return createInstance(sgName, keyName, instanceTagName)
-    })
-    .then(createInstanceTag)
-    .catch((err) => {
-        console.error('Failed to create instance with:', err)
-    });
-
-function createSecurityGroup(sgName, sgDescription) {
+/**
+ * Create a security group for a Linux instance
+ * https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html
+ * @param {String} sgName - the Name of the security group
+ * @param {String} sgDescription - the description of the security group
+ * @return Promise - The promise to be handled with ec2.createSecurityGroup and ec2.authorizeSecurityGroupIngress methods
+ */
+let createSecurityGroup = (sgName, sgDescription) => {
     const params = {
         GroupName: sgName,
         Description: sgDescription
@@ -70,9 +64,16 @@ function createSecurityGroup(sgName, sgDescription) {
             }
         })
     })
-}
+};
 
-function createKeyPair(keyName) {
+
+/**
+ * Create the KeyPairs to be used on a Linux instance
+ * https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
+ * @param {String} keyName - the Name of the Key Pair
+ * @return Promise - The promise to be handled with eec2.createKeyPair method
+ */
+let createKeyPair = (keyName) => {
     const params = {KeyName: keyName};
 
     return new Promise((resolve, reject) => {
@@ -83,9 +84,17 @@ function createKeyPair(keyName) {
                 resolve(data)
         })
     })
-}
+};
 
-function createInstance(sgName, keyName) {
+
+/**
+ * Create a EC2 Instance
+ * https://aws.amazon.com/ec2/instance-types
+ * @param {String} sgName - the Name of the security group to be used on the instance
+ * @param {String} keyName - the name of the Instance
+ * @return Promise - The promise to be handled with the ec2.runInstances method
+ */
+let createInstance = (sgName, keyName) => {
 
     //commands to run once the instance starts and to be use on the instance UserData
     let commandsString = `#!/bin/bash
@@ -96,7 +105,6 @@ function createInstance(sgName, keyName) {
     cd repo
     npm i
     npm run start`;
-
 
     const params = {
         ImageId: 'ami-14c5486b', //AMI ID that will be used to create the instance
@@ -116,13 +124,18 @@ function createInstance(sgName, keyName) {
                 reject(err);
             else
                 console.log('Created instance with:', data);
-                resolve(data)
+            resolve(data)
         })
     })
-}
+};
 
-
-function createInstanceTag(instanceData, instanceTagName) {
+/**
+ * Create the tags for a EC2 Instance
+ * https://aws.amazon.com/ec2/instance-types
+ * @param {String} instanceData - the data of the instance to be got the InstanceId
+ * @return Promise - The promise to be handled with the ec2.createTags method
+ */
+let createInstanceTag = (instanceData) => {
     const params = {
         Resources: [instanceData.Instances[0].InstanceId],
         Tags: [
@@ -141,4 +154,17 @@ function createInstanceTag(instanceData, instanceTagName) {
                 resolve(data)
         })
     })
-}
+};
+
+createSecurityGroup(sgName, sgDescription)
+    .then(() => {
+        return createKeyPair(keyName);
+    })
+    .then(keyPairHelper.persistKeyPair)
+    .then(() => {
+        return createInstance(sgName, keyName)
+    })
+    .then(createInstanceTag)
+    .catch((err) => {
+        console.error('Failed to create instance with:', err)
+    });

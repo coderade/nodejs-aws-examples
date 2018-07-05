@@ -6,9 +6,8 @@ AWS.config.update({region: 'us-east-1'});
 
 const ec2 = new AWS.EC2();
 
-
-// const INSTANCE_ID = process.env.INSTANCE_ID;
-const INSTANCE_ID = 'i-04f8353db389c730e';
+//Pass the INSTANCE_ID as environment variable
+const INSTANCE_ID = process.env.INSTANCE_ID;
 const INSTANCE_NAME = 'AMI example';
 
 /**

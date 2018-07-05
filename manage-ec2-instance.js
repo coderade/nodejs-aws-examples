@@ -6,6 +6,10 @@ AWS.config.update({region: 'us-east-1'});
 
 const ec2 = new AWS.EC2();
 
+/**
+ * List the instances created in your specified REGION
+ * @return Promise - The promise to be handled for the c2.describeInstances() method
+ */
 let listInstances = () => {
     return new Promise((resolve, reject) => {
         ec2.describeInstances({}, (err, data) => {
@@ -20,6 +24,12 @@ let listInstances = () => {
     })
 };
 
+
+/**
+ * Terminate the instance specified for the
+ * @param {String} instanceId - Id of the instance to be terminated
+ * @return Promise - The promise to be handled for the ec2.terminateInstances method
+ */
 let terminateInstance = (instanceId) => {
     let params = {
         InstanceIds: [
