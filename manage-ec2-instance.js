@@ -39,8 +39,15 @@ let terminateInstance = (instanceId) => {
     })
 };
 
-// listInstances()
-//     .then(data => console.log(data));
+listInstances()
+    .then(data => console.log(data))
+    .catch((err) => {
+        console.error(`Failed to list the instances ERROR: ${err}`);
+    });
 
-terminateInstance('i-0dadfee31ab5ec0c9')
-    .then(data => console.log(data));
+// let instanceID = 'i-0dadfee31ab5ec0c9';
+// terminateInstance(instanceID)
+//     .then(data => console.log(data))
+//     .catch((err) => {
+//         console.error(`Failed to terminate the instance ${instanceID}: ${err}`);
+//     });
