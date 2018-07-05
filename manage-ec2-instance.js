@@ -16,17 +16,31 @@ let listInstances = () => {
             else {
                 resolve(data.Reservations.reduce((i, r) => {
                     return i.concat(r.Instances)
-                },[]));
+                }, []));
             }
         })
     })
 };
 
 let terminateInstance = (instanceId) => {
-    // TODO: Terminate an instance with a given instanceId
+    let params = {
+        InstanceIds: [
+            instanceId
+        ]
+    };
+
+    return new Promise((resolve, reject) => {
+        ec2.terminateInstances(params, (err, data) => {
+            if (err)
+                reject(err);
+            else
+                resolve(data);
+        })
+    })
 };
 
-listInstances()
+// listInstances()
+//     .then(data => console.log(data));
+
+terminateInstance('i-0dadfee31ab5ec0c9')
     .then(data => console.log(data));
-// terminateInstance('i-0dadfee31ab5ec0c9')
-// .then(data => console.log(data))
