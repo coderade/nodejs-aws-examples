@@ -2,8 +2,6 @@ const AWS = require('aws-sdk');
 
 let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
 AWS.config.credentials = credentials;
-
-
 AWS.config.update({region: 'us-east-1'});
 
 const ec2 = new AWS.EC2();
