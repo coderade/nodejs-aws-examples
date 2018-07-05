@@ -1,20 +1,32 @@
-// Imports
-// TODO: Import the aws-sdk
+const AWS = require('aws-sdk');
 
-// TODO: Configure region
+let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
+AWS.config.credentials = credentials;
 
-// Declare local variables
-// TODO: Create an ec2 object
 
-function listInstances () {
-    // TODO: List instances using ec2.describeInstances()
-}
+AWS.config.update({region: 'us-east-1'});
 
-function terminateInstance (instanceId) {
+const ec2 = new AWS.EC2();
+
+let listInstances = () => {
+    return new Promise((resolve, reject) => {
+        ec2.describeInstances({}, (err, data) => {
+            if (err)
+                reject(err);
+            else {
+                resolve(data.Reservations.reduce((i, r) => {
+                    return i.concat(r.Instances)
+                },[]));
+            }
+        })
+    })
+};
+
+let terminateInstance = (instanceId) => {
     // TODO: Terminate an instance with a given instanceId
-}
+};
 
 listInstances()
     .then(data => console.log(data));
-// terminateInstance()
+// terminateInstance('i-0dadfee31ab5ec0c9')
 // .then(data => console.log(data))

@@ -1,4 +1,3 @@
-// Imports
 const AWS = require('aws-sdk');
 const keyPairHelper = require('./helpers/keyPairHelper');
 
