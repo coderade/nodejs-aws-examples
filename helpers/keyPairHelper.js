@@ -2,6 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+
+/**
+ * Persist the KeyPair file on the system
+ * @param {String} keyData - the buffer data of the key
+ * @return Promise - The promise to be handled with the fs.writeFile method
+ */
 function persistKeyPair(keyData) {
     return new Promise((resolve, reject) => {
         const keyPath = path.join(os.homedir(), '.ssh', keyData.KeyName);

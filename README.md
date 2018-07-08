@@ -17,3 +17,6 @@ Project with some examples of how to work with a EC2 instance using the AWS Java
 
 ### Creating AMIs
 - Create a AMI -> [`create-ec2-ami.js`](create-ec2-ami.js) file.
+
+## AutoScaling
+- Create a Launch configuration -> [`create-launching-configuration.js`]()create-launching-configuration.js file.

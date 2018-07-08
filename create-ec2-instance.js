@@ -168,3 +168,6 @@ createSecurityGroup(sgName, sgDescription)
     .catch((err) => {
         console.error('Failed to create instance with:', err)
     });
+
+
+exports.createSecurityGroup = createSecurityGroup;
