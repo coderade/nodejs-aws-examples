@@ -46,7 +46,7 @@ const createLoadBalancer = (lbName, sgId) => {
 };
 
 
-const vpcId = 'vpc-9d8721e5'; //pass process.env.VPC_ID
+const vpcId = process.env.VPC_ID; //To be passed as ENV variable
 /**
  * Create a target Group for the listener
  * https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.htmll
