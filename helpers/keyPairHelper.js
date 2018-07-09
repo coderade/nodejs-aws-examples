@@ -8,7 +8,7 @@ const os = require('os');
  * @param {String} keyData - the buffer data of the key
  * @return Promise - The promise to be handled with the fs.writeFile method
  */
-function persistKeyPair(keyData) {
+const persistKeyPair = (keyData) => {
     return new Promise((resolve, reject) => {
         const keyPath = path.join(os.homedir(), '.ssh', keyData.KeyName);
         const options = {
@@ -24,7 +24,7 @@ function persistKeyPair(keyData) {
             }
         })
     })
-}
+};
 
 module.exports = {
     persistKeyPair: persistKeyPair

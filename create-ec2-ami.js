@@ -17,7 +17,7 @@ const INSTANCE_NAME = 'AMI example';
  * @param {String} imageName - A name identifier for the AMI
  * @return Promise - The promise to be handled
  */
-let createImage = (seedInstanceId, imageName) => {
+const createImage = (seedInstanceId, imageName) => {
     const params = {
         InstanceId: seedInstanceId,
         Name: imageName

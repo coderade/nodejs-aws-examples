@@ -6,7 +6,7 @@ const AWS = require('aws-sdk');
  * @param {String} roleName - the role name
  * @return Promise - The promise to be handled with the iam.createRole method
  */
-let createIamRole = (roleName) => {
+const createIamRole = (roleName) => {
     const profileName = `${roleName}_profile`;
     const iam = new AWS.IAM();
     const params = {

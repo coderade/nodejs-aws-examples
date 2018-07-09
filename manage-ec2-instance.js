@@ -10,7 +10,7 @@ const ec2 = new AWS.EC2();
  * List the instances created in your specified REGION
  * @return Promise - The promise to be handled for the c2.describeInstances() method
  */
-let listInstances = () => {
+const listInstances = () => {
     return new Promise((resolve, reject) => {
         ec2.describeInstances({}, (err, data) => {
             if (err)
@@ -30,7 +30,7 @@ let listInstances = () => {
  * @param {String} instanceId - Id of the instance to be terminated
  * @return Promise - The promise to be handled for the ec2.terminateInstances method
  */
-let terminateInstance = (instanceId) => {
+const terminateInstance = (instanceId) => {
     let params = {
         InstanceIds: [
             instanceId

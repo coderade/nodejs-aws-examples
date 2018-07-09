@@ -16,7 +16,7 @@ const autoScaling = new AWS.AutoScaling();
  * @param {String} keyName - the name of the key pair used on the instance
  * @return Promise - The promise to be handled with the autoScaling.createLaunchConfiguration method
  */
-let createLaunchConfiguration = (lcName, profileArn, keyName) => {
+const createLaunchConfiguration = (lcName, profileArn, keyName) => {
 
     //commands to run once the instance starts and to be use on the instance UserData
     let commandsString = `#!/bin/bash

@@ -19,7 +19,7 @@ const instanceTagName = 'EC2 Examples';
  * @param {String} sgDescription - the description of the security group
  * @return Promise - The promise to be handled with ec2.createSecurityGroup and ec2.authorizeSecurityGroupIngress methods
  */
-let createSecurityGroup = (sgName, sgDescription) => {
+const createSecurityGroup = (sgName, sgDescription) => {
     const params = {
         GroupName: sgName,
         Description: sgDescription
@@ -73,7 +73,7 @@ let createSecurityGroup = (sgName, sgDescription) => {
  * @param {String} keyName - the Name of the Key Pair
  * @return Promise - The promise to be handled with eec2.createKeyPair method
  */
-let createKeyPair = (keyName) => {
+const createKeyPair = (keyName) => {
     const params = {KeyName: keyName};
 
     return new Promise((resolve, reject) => {
@@ -94,7 +94,7 @@ let createKeyPair = (keyName) => {
  * @param {String} keyName - the name of the Instance
  * @return Promise - The promise to be handled with the ec2.runInstances method
  */
-let createInstance = (sgName, keyName) => {
+const createInstance = (sgName, keyName) => {
 
     //commands to run once the instance starts and to be use on the instance UserData
     let commandsString = `#!/bin/bash
@@ -135,7 +135,7 @@ let createInstance = (sgName, keyName) => {
  * @param {String} instanceData - the data of the instance to be got the InstanceId
  * @return Promise - The promise to be handled with the ec2.createTags method
  */
-let createInstanceTag = (instanceData) => {
+const createInstanceTag = (instanceData) => {
     const params = {
         Resources: [instanceData.Instances[0].InstanceId],
         Tags: [
@@ -168,6 +168,3 @@ createSecurityGroup(sgName, sgDescription)
     .catch((err) => {
         console.error('Failed to create instance with:', err)
     });
-
-
-exports.createSecurityGroup = createSecurityGroup;
