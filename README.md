@@ -21,3 +21,4 @@ Project with some examples of how to work with a EC2 instance using the AWS Java
 ## AutoScaling
 - Create a Launch configuration -> [`create-launching-configuration.js`](create-launching-configuration.js) file.
 - Create a Load Balancer -> [`create-load-balancer.js`](create-load-balancer.js) file.
+- Create a Auto Scaling Group  -> [`create-auto-scaling.js`](create-auto-scaling.js) file.
