@@ -36,7 +36,7 @@ const createLaunchConfiguration = (lcName, profileArn, keyName) => {
         LaunchConfigurationName: lcName,
         KeyName: keyName,
         SecurityGroups: [
-            sgName
+            sgNameLC
         ],
         UserData: new Buffer(commandsString).toString('base64')
     };
@@ -52,9 +52,9 @@ const createLaunchConfiguration = (lcName, profileArn, keyName) => {
 };
 
 
-const lcName = 'ec2_examples_launch_config';
+const lcName = 'ec2_examples_LC';
 const roleName = 'ec2ExamplesRole';
-const sgName = 'ec2_examples_security_group';
+const sgNameLC = 'ec2_examples_security_group';
 const keyName = 'ec2_examples_instance_key';
 
 
