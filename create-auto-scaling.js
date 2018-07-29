@@ -13,7 +13,7 @@ const tgArn = process.env.TARGET_GROUP_ARN; //Pass the TargetGroup as ENV param.
 
 /**
  * Create the Auto Scaling Group
- * https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html
+ * https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html
  * @param {String} asgName - the Auto Scaling Group name
  * @param {String} lcName - the Launch configuration name
  * @return Promise - The promise to be handled
@@ -42,7 +42,7 @@ const createAutoScalingGroup = (asgName, lcName) => {
 };
 
 /**
- * Create the Auto Scaling Group
+ * Create the Auto Scaling Group Policy
  * https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html
  * @param {String} asgName - the Auto Scaling Group name
  * @param {String} policyName - the policy name

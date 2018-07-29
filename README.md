@@ -1,6 +1,7 @@
-# aws-ec2-examples
+# nodejs-aws-ec2-examples
 
-Project with some examples of how to work with a EC2 instance using the AWS Javascript SDK.
+Project with some examples of how to work with EC2 instances using the
+[AWS SDK for JavaScript in Node.js](https://aws.amazon.com/sdk-for-node-js/).
 
 ## Examples
 
@@ -22,3 +23,4 @@ Project with some examples of how to work with a EC2 instance using the AWS Java
 - Create a Launch configuration -> [`create-launching-configuration.js`](create-launching-configuration.js) file.
 - Create a Load Balancer -> [`create-load-balancer.js`](create-load-balancer.js) file.
 - Create a Auto Scaling Group  -> [`create-auto-scaling.js`](create-auto-scaling.js) file.
+- Create a Auto Scaling Group Policy -> [`create-auto-scaling.js`](create-auto-scaling.js) file.
