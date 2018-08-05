@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const SecurityGroupHelper = require('./helpers/SecurityGroupHelper');
+const SecurityGroupHelper = require('../helpers/SecurityGroupHelper');
 
 let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
 AWS.config.credentials = credentials;

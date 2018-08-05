@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const keyPairHelper = require('./helpers/keyPairHelper');
+const keyPairHelper = require('../helpers/keyPairHelper');
 
 let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
 AWS.config.credentials = credentials;

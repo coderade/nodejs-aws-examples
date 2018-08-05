@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const IAMHelper = require('./helpers/IAMHelper');
+const IAMHelper = require('../helpers/IAMHelper');
 
 let credentials = new AWS.SharedIniFileCredentials({profile: 'personal'});
 AWS.config.credentials = credentials;
