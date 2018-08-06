@@ -36,3 +36,4 @@ Examples of how to work with EC2 instances
 
 ### S3
 - Create a S3 bucket -> [`create-s3-bucket.js`](s3/create-s3-bucket.js)
+- Upload some files to S3 -> [`upload-s3-objects.js`](s3/upload-s3-objects.js)

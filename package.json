@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/coderade/aws-ec2-examples#readme",
   "dependencies": {
-    "aws-sdk": "^2.240.1"
+    "aws-sdk": "^2.240.1",
+    "glob": "^7.1.2"
   }
 }
