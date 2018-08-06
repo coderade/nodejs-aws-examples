@@ -30,6 +30,9 @@ Examples of how to work with EC2 instances
 - Create a Auto Scaling Group  -> [`create-auto-scaling.js`](ec2/create-auto-scaling.js) file.
 - Create a Auto Scaling Group Policy -> [`create-auto-scaling.js`](ec2/create-auto-scaling.js) file.
 
-
 #### EBS 
 - Detach and Attach volumes -> [`reuse-ebs-volume.js`](ec2/reuse-ebs-volume.js)
+
+
+### S3
+- Create a S3 bucket -> [`create-s3-bucket.js`](s3/create-s3-bucket.js)
