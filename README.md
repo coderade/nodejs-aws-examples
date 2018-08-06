@@ -19,6 +19,7 @@ Examples of how to work with EC2 instances
 #### Managing Instances
 - List instances -> [`manage-ec2-instance.js`](ec2/manage-ec2-instance.js) file.
 - Terminate instances -> [`manage-ec2-instance.js`](ec2/manage-ec2-instance.js) file.
+- Stop instances -> [`stop-ec2-instance.js`](ec2/stop-ec2-instance.js) file.
 
 #### Creating AMIs
 - Create a AMI -> [`create-ec2-ami.js`](ec2/create-ec2-ami.js) file.
