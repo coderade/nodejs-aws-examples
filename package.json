@@ -4,7 +4,9 @@
   "description": "Project with some examples of how to launch a EC2 instance using the AWS Javascript SDK",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,8 @@
   "homepage": "https://github.com/coderade/aws-ec2-examples#readme",
   "dependencies": {
     "aws-sdk": "^2.240.1",
-    "glob": "^7.1.2"
-  }
+    "glob": "^7.1.2",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
