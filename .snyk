@@ -6,3 +6,5 @@ patch:
   SNYK-JS-LODASH-567746:
     - aws-sdk > xml2js > xmlbuilder > lodash:
         patched: '2020-05-01T05:49:24.142Z'
+    - snyk > snyk-nuget-plugin > xml2js > xmlbuilder > lodash:
+        patched: '2020-05-03T05:49:22.827Z'
